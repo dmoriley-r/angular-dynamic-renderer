@@ -1,0 +1,14 @@
+<!-- Post preview-->
+<div class="post-preview">
+  <a routerLink="/post/trees">
+    <h2 class="post-title">{{ title }}</h2>
+    <h3 class="post-subtitle">{{ subtitle }}</h3>
+  </a>
+  <p class="post-meta">
+    Posted by
+    <span>{{ author }}</span>
+    on {{ dateAsString }}
+  </p>
+</div>
+
+<hr *ngIf="showDivider" class="my-4" />

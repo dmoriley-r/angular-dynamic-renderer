@@ -1,0 +1,8 @@
+<app-navbar />
+<app-page-header
+  [title]="(pageHeaderService.title$ | async) ?? ''"
+  [subheader]="pageHeaderService.subheader$ | async"
+  [img]="pageHeaderService.img$ | async"
+/>
+<ng-content></ng-content>
+<app-footer />

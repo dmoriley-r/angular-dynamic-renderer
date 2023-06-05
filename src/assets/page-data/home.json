@@ -1,0 +1,66 @@
+{
+  "header": "Dynamic Renderer",
+  "subheader": "Using Angular",
+  "headerBg": "bridge.webp",
+  "children": [
+    {
+      "name": "pageContainer",
+      "componentData": {
+        "children": [
+          {
+            "name": "pageSection",
+            "componentData": {
+              "children": [
+                {
+                  "name": "postPreview",
+                  "componentData": {
+                    "title": "The latest and greatest AI model to take main stage",
+                    "subtitle": "See what the AI is about and why its set to take over the world",
+                    "author": "David O'Riley",
+                    "dateAsString": "May 31, 2023"
+                  }
+                },
+                {
+                  "name": "postPreview",
+                  "componentData": {
+                    "title": "The hummingbird's wings blurred while it eagerly sipped the sugar water from the feeder",
+                    "subtitle": "He wasn't bitter that she had moved on but from the radish",
+                    "author": "Steve Lowers",
+                    "dateAsString": "May 20, 2023"
+                  }
+                },
+                {
+                  "name": "postPreview",
+                  "componentData": {
+                    "title": "She lived on Monkey Jungle Road and that seemed to explain all of her strangeness",
+                    "subtitle": "He was disappointed when he found the beach to be so sandy and the sun so sunny",
+                    "author": "Joan Maigers",
+                    "dateAsString": "May 12, 2023"
+                  }
+                },
+                {
+                  "name": "postPreview",
+                  "componentData": {
+                    "title": "If you like tuna and tomato sauce, try combining the two, it’s really not as bad as it sounds",
+                    "subtitle": "The surprising flavor is bound to knock your socks off",
+                    "author": "The Food Guru",
+                    "dateAsString": "June 25, 2023"
+                  }
+                },
+                {
+                  "name": "postPreview",
+                  "componentData": {
+                    "title": "The small white buoys marked the location of hundreds of crab pots",
+                    "subtitle": "Better find the strongest net around if you want to catch them all",
+                    "author": "Garry Fremen",
+                    "dateAsString": "June 12, 2023"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
