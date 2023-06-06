@@ -1,7 +1,9 @@
 {
-  "header": "Some kind a wonderful",
-  "subheader": "Brought to you buy the humble Maple Tree",
+  "header": "When a tree falls in the forest what happens?",
+  "subheader": "The forest critters loose a long time friend but gain a new one",
   "headerBg": "grassy-hills.webp",
+  "type": "post",
+  "metadata": "Post by Lars Hoff on May 31, 2023 | 3 mins read",
   "children": [
     {
       "name": "pageContainer",
@@ -18,6 +20,38 @@
                     "text": [
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
                       "Quisque in enim lectus. Aliquam neque velit, porta id consequat et, vulputate eu lectus. Cras maximus ligula porta quam posuere, eu varius urna sagittis. Nullam justo libero, gravida ut elit vel, euismod dignissim urna. Aenean ut rutrum orci. Suspendisse venenatis nulla vitae ultricies pretium. Vivamus ut facilisis erat. Suspendisse potenti."
+                    ]
+                  }
+                },
+                {
+                  "name": "imgContainer",
+                  "componentData": {
+                    "src": "assets/img/butterfly.webp",
+                    "alt": "butterfly",
+                    "caption": "No one teaches them, but the butterfly knows how to migrate thousands of kilometers"
+                  }
+                },
+                {
+                  "name": "textContainer",
+                  "componentData": {
+                    "text": [
+                      "Quisque in enim lectus. Aliquam neque velit, porta id consequat et, vulputate eu lectus. Cras maximus ligula porta quam posuere, eu varius urna sagittis. Nullam justo libero, gravida ut elit vel, euismod dignissim urna. Aenean ut rutrum orci. Suspendisse venenatis nulla vitae ultricies pretium. Vivamus ut facilisis erat. Suspendisse potenti."
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "pageSection",
+            "componentData": {
+              "sectionHeading": "The mighty house cat",
+              "children": [
+                {
+                  "name": "textContainer",
+                  "componentData": {
+                    "text": [
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
                     ]
                   }
                 }

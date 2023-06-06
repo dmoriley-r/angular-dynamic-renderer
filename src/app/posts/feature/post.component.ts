@@ -19,6 +19,8 @@ export class PostComponent implements OnInit {
       header: data.header,
       subheader: data.subheader,
       img: data.headerBg,
+      metadata: data.metadata,
+      type: data.type,
     }))
   );
 
@@ -32,7 +34,9 @@ export class PostComponent implements OnInit {
     this.pageHeaderService.setPageData(
       headerData.header,
       headerData.subheader,
-      headerData.img
+      headerData.img,
+      headerData.metadata,
+      headerData.type
     );
   }
 }

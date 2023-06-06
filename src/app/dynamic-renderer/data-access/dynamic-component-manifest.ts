@@ -31,6 +31,12 @@ export const dynamicComponentMap: ComponentMap = {
         (m) => m.TextContainerModule as unknown as DynamicModule
       ),
   },
+  imgContainer: {
+    loadModule: () =>
+      import('../../dynamic-components/img-container').then(
+        (m) => m.ImgContainerModule as unknown as DynamicModule
+      ),
+  },
 };
 
 export const dynamicComponentKeysSet = new Set(

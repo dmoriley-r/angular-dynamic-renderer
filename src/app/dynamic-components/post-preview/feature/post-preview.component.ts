@@ -12,6 +12,7 @@ export class PostPreviewComponent implements OnInit {
   author: string;
   dateAsString: string;
   showDivider: boolean;
+  shortName: string;
 
   constructor() {}
 
@@ -25,5 +26,6 @@ export const componentDataResolver = (data: ComponentData) => {
     author: data.author,
     dateAsString: data.dateAsString,
     showDivider: data.showDivider || true,
+    shortName: data.shortName,
   };
 };

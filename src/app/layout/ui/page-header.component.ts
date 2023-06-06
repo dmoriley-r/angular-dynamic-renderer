@@ -14,9 +14,15 @@ import { CommonModule } from '@angular/common';
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="site-heading">
+            <div
+              [class]="{
+                'site-heading': type === 'site',
+                'post-heading': type === 'post'
+              }"
+            >
               <h1>{{ title }}</h1>
-              <span *ngIf="subheader" class="subheading">{{ subheader }}</span>
+              <h2 *ngIf="subheader" class="subheading">{{ subheader }}</h2>
+              <span *ngIf="metadata" class="meta">{{ metadata }}</span>
             </div>
           </div>
         </div>
@@ -31,4 +37,6 @@ export class PageHeaderComponent {
   title: string;
   @Input() subheader: string | null;
   @Input() img: string | null;
+  @Input() metadata: string | null;
+  @Input() type: 'site' | 'post' | null = 'site';
 }
