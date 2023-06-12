@@ -2,24 +2,20 @@ import {
   ComponentRef,
   Injectable,
   Injector,
-  NgModule,
   NgModuleRef,
-  Type,
   ViewContainerRef,
   createNgModule,
 } from '@angular/core';
 import {
+  ComponentTemplate,
+  DynamicModule,
+  LoadedRenderItem,
+  isDynamicModule,
+} from '../feature/render-template.types';
+import {
   dynamicComponentKeysSet,
   dynamicComponentMap,
 } from './dynamic-component-manifest';
-import {
-  ComponentTemplate,
-  DynamicComponent,
-  DynamicModule,
-  LoadedRenderItem,
-  LoadedRenderItems,
-  isDynamicModule,
-} from '../feature/render-template.types';
 
 @Injectable({ providedIn: 'root' })
 export class DynamicComponentsService {
@@ -45,9 +41,10 @@ export class DynamicComponentsService {
     renderItem: LoadedRenderItem
   ) {
     let componentRef: ComponentRef<any>;
+    let resolverData: any;
 
     if (renderItem instanceof NgModuleRef) {
-      const resolverData =
+      resolverData =
         renderItem.instance.componentDataResolver &&
         renderItem.instance.componentDataResolver(
           componentTemplate.componentData || {}
@@ -56,21 +53,17 @@ export class DynamicComponentsService {
         ngModuleRef: renderItem,
       });
       // if resolver data found apply to the component
-      if (resolverData) {
-        Object.keys(resolverData).forEach(
-          (key) => (componentRef.instance[key] = resolverData[key])
-        );
-      }
     } else {
       componentRef = container.createComponent(renderItem);
-      const resolverData = componentRef.instance.componentDataResolver(
+      resolverData = componentRef.instance.componentDataResolver(
         componentTemplate.componentData || {}
       );
-      if (resolverData) {
-        Object.keys(resolverData).forEach(
-          (key) => (componentRef.instance[key] = resolverData[key])
-        );
-      }
+    }
+
+    if (resolverData) {
+      Object.keys(resolverData).forEach(
+        (key) => (componentRef.instance[key] = resolverData[key])
+      );
     }
 
     container.insert(componentRef.hostView);

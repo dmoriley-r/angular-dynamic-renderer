@@ -15,31 +15,31 @@ export const dynamicComponentMap: ComponentMap = {
   pageContainer: {
     loadComponent: () =>
       import('../../dynamic-components/page-container').then(
-        (m) => m.PageContainerModule as unknown as Type<DynamicModule>
+        (m) => m.PageContainerModule as Type<DynamicModule>
       ),
   },
   pageSection: {
     loadComponent: () =>
       import('../../dynamic-components/page-section').then(
-        (m) => m.PageSectionModule as unknown as Type<DynamicModule>
+        (m) => m.PageSectionModule as Type<DynamicModule>
       ),
   },
   postPreview: {
     loadComponent: () =>
       import('../../dynamic-components/post-preview').then(
-        (m) => m.PostPreviewModule as unknown as Type<DynamicModule>
+        (m) => m.PostPreviewComponent as Type<DynamicComponent>
       ),
   },
   textContainer: {
     loadComponent: () =>
       import('../../dynamic-components/text-container').then(
-        (c) => c.TextContainerComponent as unknown as Type<DynamicComponent>
+        (c) => c.TextContainerComponent as Type<DynamicComponent>
       ),
   },
   imgContainer: {
     loadComponent: () =>
       import('../../dynamic-components/img-container').then(
-        (m) => m.ImgContainerModule as unknown as Type<DynamicModule>
+        (m) => m.ImgContainerModule as Type<DynamicModule>
       ),
   },
 };

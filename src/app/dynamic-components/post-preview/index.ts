@@ -1,1 +1,1 @@
-export * from './feature/post-preview.module';
+export * from './feature/post-preview.component';
