@@ -1,1 +1,1 @@
-export * from './feature/text-container.module';
+export * from './feature/text-container.component';
