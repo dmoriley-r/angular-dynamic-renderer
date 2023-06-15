@@ -36,7 +36,7 @@ export class RenderTemplateComponent implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     if (!this.container || !this.components || this.components.length === 0) {
       return;
     }
@@ -47,41 +47,34 @@ export class RenderTemplateComponent implements AfterViewInit {
       .filter((componentData) =>
         this.dynamicComponentsService.checkComponentMap(componentData, 'dev')
       )
-      .map((componentTemplate) => {
-        return this.dynamicComponentsService
-          .loadComponentInfo(componentTemplate.name)
-          .then((itemRef) => ({ renderItemRef: itemRef, componentTemplate }));
+      .map(async (componentTemplate) => {
+        const itemRef = await this.dynamicComponentsService.loadComponentInfo(
+          componentTemplate.name
+        );
+        return { renderItemRef: itemRef, componentTemplate };
       });
 
     this.container?.clear(); // clear the container that holds the components
     this.renderComponents(loadedComponentModules);
   }
 
-  renderComponents(items: Promise<LoadedRenderItems>[]) {
-    Promise.allSettled(items).then(
-      (settledItem: PromiseSettledResult<LoadedRenderItems>[]) => {
-        try {
-          for (let item of settledItem) {
-            if (isFulfilled(item)) {
-              const newComponent =
-                this.dynamicComponentsService.createComponent(
-                  this.container,
-                  item.value.componentTemplate,
-                  item.value.renderItemRef
-                );
-              if (newComponent) {
-                this.componentRefs.push(newComponent);
-              }
-            } else {
-              // is rejected
-              throw new Error(item.reason);
-            }
-          }
-        } catch (e) {
-          console.error(e);
+  async renderComponents(items: Promise<LoadedRenderItems>[]) {
+    const allSettledItems = await Promise.allSettled(items);
+    for (let item of allSettledItems) {
+      if (isFulfilled(item)) {
+        const newComponent = this.dynamicComponentsService.createComponent(
+          this.container,
+          item.value.componentTemplate,
+          item.value.renderItemRef
+        );
+        if (newComponent) {
+          this.componentRefs.push(newComponent);
         }
-        this.cdr.detectChanges();
+      } else {
+        // is rejected
+        console.error(item.reason);
       }
-    );
+    }
+    this.cdr.detectChanges();
   }
 }

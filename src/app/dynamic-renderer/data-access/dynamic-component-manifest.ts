@@ -11,7 +11,7 @@ type ComponentMap = {
   };
 };
 
-export const dynamicComponentMap: ComponentMap = {
+const _dynamicComponentMap: ComponentMap = {
   pageContainer: {
     loadComponent: () =>
       import('../../dynamic-components/page-container').then(
@@ -44,6 +44,7 @@ export const dynamicComponentMap: ComponentMap = {
   },
 };
 
-export const dynamicComponentKeysSet = new Set(
-  Object.keys(dynamicComponentMap)
+// TODO change this to a map and only export this instead of the above object
+export const dynamicComponentMap = new Map(
+  Object.entries(_dynamicComponentMap)
 );

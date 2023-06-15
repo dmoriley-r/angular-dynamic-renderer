@@ -12,27 +12,26 @@ import {
   LoadedRenderItem,
   isDynamicModule,
 } from '../feature/render-template.types';
-import {
-  dynamicComponentKeysSet,
-  dynamicComponentMap,
-} from './dynamic-component-manifest';
+import { dynamicComponentMap } from './dynamic-component-manifest';
 
 @Injectable({ providedIn: 'root' })
 export class DynamicComponentsService {
   constructor(public injector: Injector) {}
 
-  loadComponentInfo(name: string) {
-    return dynamicComponentMap[name].loadComponent().then((item) => {
-      if (!item) {
-        throw new Error(`Component not found for: ${name};`);
-      }
-      if (isDynamicModule(item)) {
-        return createNgModule<DynamicModule>(item as any, this.injector);
-      } else {
-        // stand alone component
-        return item;
-      }
-    });
+  async loadComponentInfo(name: string) {
+    const loadedComponent = await dynamicComponentMap
+      .get(name)!
+      .loadComponent();
+
+    if (!loadedComponent) {
+      throw new Error(`Component not found for: ${name};`);
+    }
+    if (isDynamicModule(loadedComponent)) {
+      return createNgModule<DynamicModule>(loadedComponent, this.injector);
+    } else {
+      // stand alone component
+      return loadedComponent;
+    }
   }
 
   createComponent(
@@ -72,7 +71,7 @@ export class DynamicComponentsService {
 
   checkComponentMap(componentData: any, environment: string): boolean {
     if (
-      !dynamicComponentKeysSet.has(componentData.name) &&
+      !dynamicComponentMap.has(componentData.name) &&
       environment !== 'prod'
     ) {
       console.error(
@@ -83,7 +82,7 @@ export class DynamicComponentsService {
     return (
       Boolean(componentData) &&
       Boolean(componentData.name) &&
-      dynamicComponentKeysSet.has(componentData.name)
+      dynamicComponentMap.has(componentData.name)
     );
   }
 }
