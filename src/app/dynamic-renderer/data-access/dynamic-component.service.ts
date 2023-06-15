@@ -1,48 +1,65 @@
 import {
+  ComponentRef,
   Injectable,
   Injector,
+  NgModuleRef,
   ViewContainerRef,
   createNgModule,
 } from '@angular/core';
 import {
+  ComponentTemplate,
+  DynamicModule,
+  LoadedRenderItem,
+  isDynamicModule,
+} from '../feature/render-template.types';
+import {
   dynamicComponentKeysSet,
   dynamicComponentMap,
 } from './dynamic-component-manifest';
-import {
-  ComponentTemplate,
-  LoadedComponentModules,
-} from '../feature/render-template.types';
 
 @Injectable({ providedIn: 'root' })
 export class DynamicComponentsService {
   constructor(public injector: Injector) {}
 
-  loadComponentModule(componentMapName: string) {
-    dynamicComponentMap;
-    return dynamicComponentMap[componentMapName].loadModule().then((module) => {
-      if (!module) {
-        throw new Error(`Module not found for: ${componentMapName};`);
+  loadComponentInfo(name: string) {
+    return dynamicComponentMap[name].loadComponent().then((item) => {
+      if (!item) {
+        throw new Error(`Component not found for: ${name};`);
       }
-      return createNgModule<typeof module>(module as any, this.injector);
+      if (isDynamicModule(item)) {
+        return createNgModule<DynamicModule>(item as any, this.injector);
+      } else {
+        // stand alone component
+        return item;
+      }
     });
   }
 
   createComponent(
     container: ViewContainerRef,
     componentTemplate: ComponentTemplate,
-    moduleRef: LoadedComponentModules['moduleRef']
+    renderItem: LoadedRenderItem
   ) {
-    // check resolver function exists and execute it
-    const resolverData =
-      moduleRef.instance.componentDataResolver &&
-      moduleRef.instance.componentDataResolver(
+    let componentRef: ComponentRef<any>;
+    let resolverData: any;
+
+    if (renderItem instanceof NgModuleRef) {
+      resolverData =
+        renderItem.instance.componentDataResolver &&
+        renderItem.instance.componentDataResolver(
+          componentTemplate.componentData || {}
+        );
+      componentRef = container.createComponent(renderItem.instance.entry, {
+        ngModuleRef: renderItem,
+      });
+      // if resolver data found apply to the component
+    } else {
+      componentRef = container.createComponent(renderItem);
+      resolverData = componentRef.instance.componentDataResolver(
         componentTemplate.componentData || {}
       );
-    const componentRef = container.createComponent(moduleRef.instance.entry, {
-      ngModuleRef: moduleRef,
-    });
+    }
 
-    // if resolver data found apply to the component
     if (resolverData) {
       Object.keys(resolverData).forEach(
         (key) => (componentRef.instance[key] = resolverData[key])

@@ -10,10 +10,7 @@ import {
 } from '@angular/core';
 import { DynamicComponentsService } from '../data-access/dynamic-component.service';
 import { isFulfilled } from '../utils/utils';
-import {
-  ComponentTemplate,
-  LoadedComponentModules,
-} from './render-template.types';
+import { ComponentTemplate, LoadedRenderItems } from './render-template.types';
 
 @Component({
   selector: 'app-render-template',
@@ -52,34 +49,32 @@ export class RenderTemplateComponent implements AfterViewInit {
       )
       .map((componentTemplate) => {
         return this.dynamicComponentsService
-          .loadComponentModule(componentTemplate.name)
-          .then((moduleRef) => ({ moduleRef, componentTemplate }));
+          .loadComponentInfo(componentTemplate.name)
+          .then((itemRef) => ({ renderItemRef: itemRef, componentTemplate }));
       });
 
     this.container?.clear(); // clear the container that holds the components
     this.renderComponents(loadedComponentModules);
   }
 
-  renderComponents(
-    loadedComponentFactories: Promise<LoadedComponentModules>[]
-  ) {
-    Promise.allSettled(loadedComponentFactories).then(
-      (settledModules: PromiseSettledResult<LoadedComponentModules>[]) => {
+  renderComponents(items: Promise<LoadedRenderItems>[]) {
+    Promise.allSettled(items).then(
+      (settledItem: PromiseSettledResult<LoadedRenderItems>[]) => {
         try {
-          for (let module of settledModules) {
-            if (isFulfilled(module)) {
+          for (let item of settledItem) {
+            if (isFulfilled(item)) {
               const newComponent =
                 this.dynamicComponentsService.createComponent(
                   this.container,
-                  module.value.componentTemplate,
-                  module.value.moduleRef
+                  item.value.componentTemplate,
+                  item.value.renderItemRef
                 );
               if (newComponent) {
                 this.componentRefs.push(newComponent);
               }
             } else {
               // is rejected
-              throw new Error(module.reason);
+              throw new Error(item.reason);
             }
           }
         } catch (e) {
