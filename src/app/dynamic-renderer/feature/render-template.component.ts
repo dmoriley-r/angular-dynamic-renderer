@@ -75,6 +75,6 @@ export class RenderTemplateComponent implements AfterViewInit {
         console.error(item.reason);
       }
     }
-    this.cdr.detectChanges();
+    this.cdr.markForCheck();
   }
 }

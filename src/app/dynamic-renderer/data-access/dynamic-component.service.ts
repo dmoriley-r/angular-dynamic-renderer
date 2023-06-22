@@ -54,9 +54,11 @@ export class DynamicComponentsService {
       // if resolver data found apply to the component
     } else {
       componentRef = container.createComponent(renderItem);
-      resolverData = componentRef.instance.componentDataResolver(
-        componentTemplate.componentData || {}
-      );
+      resolverData =
+        componentRef.instance.componentDataResolver &&
+        componentRef.instance.componentDataResolver(
+          componentTemplate.componentData || {}
+        );
     }
 
     if (resolverData) {
