@@ -46,19 +46,19 @@
                   "componentData": {
                     "title": "If you like tuna and tomato sauce, try combining the two, it’s really not as bad as it sounds",
                     "subtitle": "The surprising flavor is bound to knock your socks off",
-                    "shortName": "tomato-sauce",
+                    "shortName": "food",
                     "author": "The Food Guru",
-                    "dateAsString": "June 25, 2023"
+                    "dateAsString": "April 25, 2023"
                   }
                 },
                 {
                   "name": "postPreview",
                   "componentData": {
-                    "title": "The small white buoys marked the location of hundreds of crab pots",
+                    "title": "The small white buoys marked the location of hundreds of crab",
                     "subtitle": "Better find the strongest net around if you want to catch them all",
-                    "shortName": "crab-post",
+                    "shortName": "crabs",
                     "author": "Garry Fremen",
-                    "dateAsString": "June 12, 2023"
+                    "dateAsString": "April 12, 2023"
                   }
                 }
               ]

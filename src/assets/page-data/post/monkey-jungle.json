@@ -1,0 +1,57 @@
+{
+  "header": "She lived on Monkey Jungle Road and that seemed to explain all of her strangeness",
+  "subheader": "He was disappointed when he found the beach to be so sandy and the sun so sunny",
+  "headerBg": "leaves.webp",
+  "type": "post",
+  "metadata": "Post by Joan Maigers on May 12, 2023 | 2 mins read",
+  "children": [
+    {
+      "name": "pageContainer",
+      "componentData": {
+        "children": [
+          {
+            "name": "pageSection",
+            "componentData": {
+              "sectionHeading": "The Characteristics of the Monkey",
+              "children": [
+                {
+                  "name": "textContainer",
+                  "componentData": {
+                    "text": [
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus, nisi nec consequat placerat, nulla eros dignissim dolor, id dignissim metus odio sed ligula. Proin suscipit vulputate est, sed lacinia velit efficitur id. Nunc fermentum neque ac metus euismod, id cursus nulla luctus. Phasellus in mi vitae velit laoreet consequat. Praesent efficitur fringilla arcu, non lobortis justo. Quisque interdum ullamcorper lacinia."
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "pageSection",
+            "componentData": {
+              "sectionHeading": "Monkey' Uncle",
+              "children": [
+                {
+                  "name": "textContainer",
+                  "componentData": {
+                    "text": [
+                      "Curabitur sodales massa ac sapien semper, in rutrum elit aliquam. Pellentesque ultricies mi et sem convallis eleifend. Vivamus id fringilla velit, et venenatis metus. Etiam et justo vulputate, volutpat sapien ac, fermentum massa. Nunc suscipit erat non ultrices consequat. Sed imperdiet scelerisque convallis. Aliquam euismod, ligula ac tincidunt ultricies, ligula risus ullamcorper metus, vitae cursus odio urna eu mauris.",
+                      "Integer volutpat eros in ullamcorper ullamcorper. Suspendisse et magna pulvinar, faucibus orci non, varius ligula. Donec bibendum, est id finibus sagittis, est metus facilisis purus, non consectetur nulla mi a justo. Duis tempor pharetra elit id ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque dignissim nibh eget sem faucibus, et efficitur purus pellentesque. Nam eget metus vestibulum, fringilla dolor et, suscipit justo."
+                    ]
+                  }
+                },
+                {
+                  "name": "imgContainer",
+                  "componentData": {
+                    "src": "assets/img/monkey.webp",
+                    "alt": "monkey",
+                    "caption": "Look how it stares"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
