@@ -10,7 +10,7 @@ import {
   ComponentTemplate,
   DynamicModule,
   LoadedRenderItem,
-  isDynamicModule,
+  isModuleDefinition,
 } from '../feature/render-template.types';
 import { dynamicComponentMap } from './dynamic-component-manifest';
 
@@ -26,7 +26,7 @@ export class DynamicComponentsService {
     if (!loadedComponent) {
       throw new Error(`Component not found for: ${name};`);
     }
-    if (isDynamicModule(loadedComponent)) {
+    if (isModuleDefinition(loadedComponent)) {
       return createNgModule<DynamicModule>(loadedComponent, this.injector);
     } else {
       // stand alone component

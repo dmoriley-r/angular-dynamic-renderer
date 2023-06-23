@@ -24,13 +24,30 @@ export type LoadedRenderItem =
   | NgModuleRef<DynamicModule>
   | Type<DynamicComponent>;
 
-export function isDynamicModule(
+// Keys used internally by angular on definition classes
+// can be used to determine what a class is before its processed
+const NG_MOD_DEF_KEY = 'ɵmod';
+const NG_COMP_DEF_KEY = 'ɵcmp';
+// directive
+// const NG_DIR_DEF_KEY =  'ɵdir'
+// pipe
+// const NG_PIPE_DEF_KEY = 'ɵpipe'
+// factory
+// const NG_FACTORY_DEF_KEY = 'ɵfac'
+
+/** Type guard and function to determine if a object is an NgModule definition */
+export function isModuleDefinition(
   item: DynamicRenderItem
 ): item is Type<DynamicModule> {
-  // maybe theres a better way to determine this
-  return item.name.toLowerCase().includes('module');
+  return !!(item as any)[NG_MOD_DEF_KEY];
 }
 
+/** Type guard and function to determine if an object is an Component definition  */
+export function isComponentDefinition(
+  item: DynamicRenderItem
+): item is Type<DynamicComponent> {
+  return !!(item as any)[NG_COMP_DEF_KEY];
+}
 export interface LoadedRenderItems {
   renderItemRef: LoadedRenderItem;
   componentTemplate: ComponentTemplate;

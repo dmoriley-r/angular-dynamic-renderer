@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:prod": "live-server dist --entry-file=dist/index.html",
+    "start:prod": "live-server dist --entry-file=index.html",
     "build": "ng build",
     "build:serve": "pnpm build && pnpm start:prod",
     "watch": "ng build --watch --configuration development",

@@ -6,6 +6,12 @@ Run `pnpm start` for a dev server. Navigate to `http://localhost:4200/`. The app
 
 Run `pnpm build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+Run `pnpm start:prod` to serve the production build locally to port 8080.
+
+Run `pnpm build:serve` to build and then serve the production build locally.
+
+---
+
 ## Dynamic Rendering with Angular and Standalone Components
 
 #### What is dynamic rendering with Angular
