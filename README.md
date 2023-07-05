@@ -451,3 +451,5 @@ export class TextContainerComponent implements DynamicComponent {
 #### Conclusion
 
 Using dynamic rendering empowers business and content authors, especially when paired with a CMS. It promotes consistency and reusability by defining a set of building blocks that can be used and reused to build your web pages. It also enables quick iteration on design and customization without the need for dev work and a build and deploy step, which will deliver the product to your users that much faster.
+
+For a full working example of the above concepts you can check out this GitHub repository https://github.com/dmoriley-r/angular-dynamic-renderer.
