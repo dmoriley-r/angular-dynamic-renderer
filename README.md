@@ -12,6 +12,12 @@ Run `pnpm build:serve` to build and then serve the production build locally.
 
 ---
 
+For a full working example of the concepts in this article see the [github](https://github.com/dmoriley-r/angular-dynamic-renderer). The most important files to look at would be:
+
+- dynamic-componente-manifest.ts
+- render-template.component.ts
+- dynamic-component.service.ts
+
 #### What is dynamic rendering with Angular
 
 For the most part web apps will have pages that have their structures predefined. The pages may be dynamic based on user data or predefined conditions but the structure of the web pages for the different permutations are setup before hand. Dynamic rendering involves using components that the angular engine will build at runtime. With dynamic rendering, a webpage doesn't have its structure setup before hand. Using specially defined components a webpage can be structurally defined at at data source like a content management system (CMS) and then have that structure rendered dynamically at runtime.
@@ -451,5 +457,3 @@ export class TextContainerComponent implements DynamicComponent {
 #### Conclusion
 
 Using dynamic rendering empowers business and content authors, especially when paired with a CMS. It promotes consistency and reusability by defining a set of building blocks that can be used and reused to build your web pages. It also enables quick iteration on design and customization without the need for dev work and a build and deploy step, which will deliver the product to your users that much faster.
-
-For a full working example of the above concepts you can check out this GitHub repository https://github.com/dmoriley-r/angular-dynamic-renderer.
