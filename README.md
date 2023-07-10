@@ -26,7 +26,7 @@ For the most part web apps will have pages that have their structures predefined
 
 Using dynamic rendering empowers websites to be driven by a data source like a CMS. After having the dynamic rendering pipeline setup by the developers the structure of the webpages can be authored by business and content writers with quick turn around. Instead of only being able to define text context within fixed areas of the page, the author can update text content but also the structure of the webpage itself without having to go through the whole build and deploy cycle. Using dynamic rendering is like using a markdown interpreter. By building a dynamic rendering pipeline, you are building a markdown language that your render pipeline can dynamically parse and render at runtime.
 
-#### Angular Implementation Challenges
+#### Angular implementation challenges
 
 Implementing dynamic rendering in Angular has some challenges itself. Dynamic rendering is a manual process and operations normally handled by Angular need to be handled by the dynamic rendering pipeline. This includes manually compiling components, attaching them to the view and cleaning up after the dynamic components. A library like React has an easier time of this because it only needs the desired JSX as the result, which is easy to achieve with a simple map object. Angular can't just pass the component as defined in its class file. Those class definitions need to be complied correctly and then manually attached to the correct view so that its rendered where expected. One other challenge of this flow is the introduction of standalone components. Angular now has module based and standalone components and each are compiled differently.
 
