@@ -26,6 +26,10 @@ For the most part web apps will have pages that have their structures predefined
 
 Using dynamic rendering empowers websites to be driven by a data source like a CMS. After having the dynamic rendering pipeline setup by the developers the structure of the webpages can be authored by business and content writers with quick turn around. Instead of only being able to define text context within fixed areas of the page, the author can update text content but also the structure of the webpage itself without having to go through the whole build and deploy cycle. Using dynamic rendering is like using a markdown interpreter. By building a dynamic rendering pipeline, you are building a markdown language that your render pipeline can dynamically parse and render at runtime.
 
+#### Angular Implementation Challenges
+
+Implementing dynamic rendering in Angular has some challenges itself. Dynamic rendering is a manual process and operations normally handled by Angular need to be handled by the dynamic rendering pipeline. This includes manually compiling components, attaching them to the view and cleaning up after the dynamic components. A library like React has an easier time of this because it only needs the desired JSX as the result, which is easy to achieve with a simple map object. Angular can't just pass the component as defined in its class file. Those class definitions need to be complied correctly and then manually attached to the correct view so that its rendered where expected. One other challenge of this flow is the introduction of standalone components. Angular now has module based and standalone components and each are compiled differently.
+
 #### Building a pipeline
 
 The happy path of dynamic rendering consists of three main parts. First is receiving the components that are to be rendered, whether that be from a CMS or a regular REST endpoint, and passing them to the component responsible for rendering them. The second step is to take that information and match it with a component that has been predefined. In the third step, the classes and modules are processed into components that angular can use and in the final step these components are simply attached to the view of the application which renders them on the DOM.
@@ -287,7 +291,7 @@ Couple things left to do. Since we are creating dynamic components we are also n
   }
 ```
 
-##### Custom Properties
+##### Custom properties
 
 Creating a pipeline for dynamic rendering lets the author iterate on a page quickly by shuffling around components, which is useful. What would make it a lot more useful would be if you could customize those components. Changing the text rendered, adjusting whether a component has padding on top, should the component show a button, light or dark theme components. Custom properties could change any aspect of the component you would like and give the author high flexibility to change aspects of the page quickly. Custom properties need to be setup before hand when the dynamic components are being created by the developers.
 
@@ -453,6 +457,18 @@ export class TextContainerComponent implements DynamicComponent {
   }
 }
 ```
+
+#### Next steps
+
+The above sets up a good render pipeline. Where can we go from here? There's always room for improvement. Here are a couple idea's you could take advantage of.
+
+##### Compiled components cache
+
+Currently, in the pipeline every component is compiled and processed, regardless if it's been used many times before. A compiled component cache would remember components that have already been processed and pull on those to create subsequent components of the same type. Setting this up can reduce overhead in processing and improve the efficiency of the dynamic rendering process at the cost of memory used by the cache.
+
+##### Dynamic page routes
+
+Right now for a page to take advantage of the dynamic rendering, there needs to be a page setup in the `app.routes`. That page also needs to have an `app-render-template` component within the page component' template that receives the list of components to render. So pages that want to take advantage of dynamic rendering have to be set up before hand. If an application wants to be even more dynamic, a flow could be set up that allows for dynamic page routes. When the application is bootstrapped, static routes could be merged with a response that contains routes setup by a content author. These routes would then need to point to a basic template that contains an `app-render-template`. From there the flow would be the same as before, but now the application would have dynamic routes with dynamic content.
 
 #### Conclusion
 
