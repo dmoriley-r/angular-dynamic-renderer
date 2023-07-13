@@ -48,9 +48,10 @@ export class RenderTemplateComponent implements AfterViewInit {
         this.dynamicComponentsService.checkComponentMap(componentData, 'dev')
       )
       .map(async (componentTemplate) => {
-        const itemRef = await this.dynamicComponentsService.loadComponentInfo(
-          componentTemplate.name
-        );
+        const itemRef =
+          await this.dynamicComponentsService.loadComponentConstructor(
+            componentTemplate.name
+          );
         return { renderItemRef: itemRef, componentTemplate };
       });
 

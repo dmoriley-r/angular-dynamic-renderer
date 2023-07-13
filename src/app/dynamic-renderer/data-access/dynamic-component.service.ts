@@ -10,7 +10,8 @@ import {
   ComponentTemplate,
   DynamicModule,
   LoadedRenderItem,
-  isModuleDefinition,
+  isComponentConstructor,
+  isModuleConstructor,
 } from '../feature/render-template.types';
 import { dynamicComponentMap } from './dynamic-component-manifest';
 
@@ -18,19 +19,23 @@ import { dynamicComponentMap } from './dynamic-component-manifest';
 export class DynamicComponentsService {
   constructor(public injector: Injector) {}
 
-  async loadComponentInfo(name: string) {
-    const loadedComponent = await dynamicComponentMap
-      .get(name)!
-      .loadComponent();
+  async loadComponentConstructor(name: string) {
+    const loadedItem = dynamicComponentMap.get(name);
 
-    if (!loadedComponent) {
+    if (!loadedItem) {
       throw new Error(`Component not found for: ${name};`);
     }
-    if (isModuleDefinition(loadedComponent)) {
-      return createNgModule<DynamicModule>(loadedComponent, this.injector);
+
+    const loadedComponentConstructor = await loadedItem.loadComponent();
+
+    if (isModuleConstructor(loadedComponentConstructor)) {
+      return createNgModule<DynamicModule>(
+        loadedComponentConstructor,
+        this.injector
+      );
     } else {
       // stand alone component
-      return loadedComponent;
+      return loadedComponentConstructor;
     }
   }
 
@@ -42,7 +47,7 @@ export class DynamicComponentsService {
     let componentRef: ComponentRef<any>;
     let resolverData: any;
 
-    if (renderItem instanceof NgModuleRef) {
+    if (!isComponentConstructor(renderItem)) {
       resolverData =
         renderItem.instance.componentDataResolver &&
         renderItem.instance.componentDataResolver(
