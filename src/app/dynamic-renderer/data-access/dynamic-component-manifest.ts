@@ -1,7 +1,4 @@
-import { Type } from '@angular/core';
 import {
-  DynamicComponent,
-  DynamicModule,
   DynamicItemConstructor,
 } from '../feature/render-template.types';
 

@@ -29,11 +29,14 @@
           },
           "configurations": {
             "production": {
+	      "buildOptimizer": true,
+	      "optimization": false,
+	      "sourceMap": false,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -46,7 +49,6 @@
             "development": {
               "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -58,19 +60,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "dynamic-renderer:build:production"
+              "buildTarget": "dynamic-renderer:build:production"
             },
             "development": {
-              "browserTarget": "dynamic-renderer:build:development"
+              "buildTarget": "dynamic-renderer:build:development"
             }
           },
           "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "dynamic-renderer:build"
-          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -85,5 +81,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
